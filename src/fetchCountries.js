@@ -10,6 +10,11 @@ export function fetchCountries(name) {
   });
 
   const url = BASE_URL + END_POINT + PARAMS;
-  
-  return fetch(url).then(res=>res.json());
+
+  return fetch(url).then(res=>{
+    if(!res.ok){
+        throw new Error(res.status);
+    }
+    return res.json();
+  });
 }
